@@ -3,15 +3,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>EDITAR Tarefa</title>
+        <title>EDITAR Usuário</title>
     </head>
     <body>
-        <h1>EDITAR Tarefa</h1>
+        <h1>EDITAR Usuário</h1>
         <form method="post">
-            
-            <label>Concluída? <input name="concluida" type="checkbox" <%=request.getAttribute("concluida")%>/></label><br>
-            <label>Titulo: <input name="titulo" value="<%=request.getAttribute("titulo")%>" /></label><br>
-            <label>Descrição: <textarea name="descricao" rows="4"><%=request.getAttribute("descricao")%></textarea></label><br>
+            <label>Nome: <input type="text" name="nome_usuario" rows="4"><%=request.getAttribute("nome")%></input></label><br>
             <input type="hidden" value="<%=request.getAttribute("id")%>">
             <input type="submit"/><br>
             <input type="reset"/><br>
