@@ -42,6 +42,8 @@ public class ListaDeUsuarios {
         if (Usuarios == null) {
             autoIncrementoUsuario = 4;
             Usuarios = new ArrayList<>();
+            Figurinhas = new ArrayList<>();
+            
             Usuarios.add(new Usuario(1, "nome 1"));
             Usuarios.add(new Usuario(2, "nome 2"));
             Usuarios.add(new Usuario(3, "nome 3"));
