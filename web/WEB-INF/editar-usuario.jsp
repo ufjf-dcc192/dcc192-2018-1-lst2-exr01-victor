@@ -8,8 +8,8 @@
     <body>
         <h1>EDITAR Usuário</h1>
         <form method="post">
-            <label>Nome: <input type="text" name="nome_usuario" rows="4"><%=request.getAttribute("nome")%></input></label><br>
-            <input type="hidden" value="<%=request.getAttribute("id")%>">
+            <label>Nome: <input type="text" name="nome_usuario" value="<%=request.getAttribute("nome")%>" /></label><br>
+            <input type="hidden" value="<%=request.getAttribute("id")%>" />
             <input type="submit"/><br>
             <input type="reset"/><br>
         </form>

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ice
  */
-@WebServlet(name = "FigurinhasServlet", urlPatterns = {"/listar-figurinhas.html", "/criar-usuario.html", "/editar-usuario.html", "/listar-usuarios.html"})
+@WebServlet(name = "FigurinhasServlet", urlPatterns = {"/listar-figurinhas.html", "/criar-usuario.html", "/editar-usuario.html", "/remover-usuario.html", "/listar-usuarios.html"})
 public class FigurinhasServlet extends HttpServlet {
 
     /**
@@ -69,6 +69,9 @@ public class FigurinhasServlet extends HttpServlet {
         } else if ("/editar-usuario.html".equals(request.getServletPath())) {
             editarUsuario(request, response);
             return;
+        } else if ("/remover-usuario.html".equals(request.getServletPath())) {
+            removerUsuario(request, response);
+            return;
         } else if ("/listar-usuarios.html".equals(request.getServletPath())) {
             listarUsuario(request, response);
             return;
@@ -96,7 +99,7 @@ public class FigurinhasServlet extends HttpServlet {
         } else {
             Integer id = Integer.parseInt(request.getParameter("id"));
             Usuario usuario = ListaDeUsuarios.getUsuarioById(id);
-            usuario.setNome(nome);
+            usuario.setNome(request.getParameter("nome_usuario"));
             response.sendRedirect("listar-usuarios.html");
         }
     }
@@ -132,9 +135,15 @@ public class FigurinhasServlet extends HttpServlet {
         Usuario usuario = ListaDeUsuarios.getUsuarioById(id);
 
         request.setAttribute("id", id);
-        request.setAttribute("name", usuario.getNome());
+        request.setAttribute("nome", usuario.getNome());
 
         despachante.forward(request, response);
+    }
+    
+    private void removerUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Integer id = Integer.parseInt(request.getParameter("id"));
+        ListaDeUsuarios.removerUsuario(id);
+        response.sendRedirect("listar-usuarios.html");
     }
 
     private void listarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

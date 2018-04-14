@@ -29,8 +29,8 @@
                     }
                 %>
             </ul>
-            <a href="editar.html?id=<%=usuario.getId()%>">Editar</a>
-            <a href="remover.html?id=<%=usuario.getId()%>">Remover</a>
+            <a href="editar-usuario.html?id=<%=usuario.getId()%>">Editar</a>
+            <a href="remover-usuario.html?id=<%=usuario.getId()%>">Remover</a>
         </ul>
         <%
             }
