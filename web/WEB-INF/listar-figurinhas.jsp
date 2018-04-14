@@ -1,36 +1,30 @@
+<%@page import="br.ufjf.dcc192.Figurinha"%>
 <%@page import="java.util.List"%>
-<%@page import="br.ufjf.dcc192.ListaDeTarefas"%>
-<%@page import="br.ufjf.dcc192.Tarefa"%>
+<%@page import="br.ufjf.dcc192.ListaDeUsuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista de Tarefas</title>
+        <title>Lista de Figurinhas</title>
     </head>
     <body>
-        <h1>Lista de Tarefas</h1>
+        <h1>Lista de Figurinhas</h1>
         <table border="1">
             <tbody>
             <%
-            for(Tarefa tarefa: (List<Tarefa>)request.getAttribute("tarefas")){
+            for(Figurinha figurinha : (List<Figurinha>)request.getAttribute("figurinhas")){
             %>
             <tr>
-                <td><a href="mudar-estado.html?id=<%=tarefa.getId()%>"><%=tarefa.getConcluida()?"Concluída":"A fazer"%></a></td>
-                <td><%=tarefa.getTitulo()%></td>
-                <td><%=tarefa.getDescricao()%></td>
-                <td><a href="editar.html?id=<%=tarefa.getId()%>">Editar</a></td>
-                <td><a href="remover.html?id=<%=tarefa.getId()%>">Remover</a></td>
+                <td><%=figurinha.getId()%></td>
+                <td><%=figurinha.getNome()%></td>
+                <td><a href="procura-figurinha.html?id=<%=figurinha.getId()%>">Procuro</a></td>
+                <td><a href="oferta-figurinha.html?id=<%=figurinha.getId()%>">Oferto</a></td>
             </tr>
             <%
             }
             %>
             </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3"><a href="nova.html">Nova Tarefa</a></td>
-                </tr>
-            </tfoot>
         </table>
     </body>
 </html>

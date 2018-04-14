@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ice
  */
-@WebServlet(name = "FigurinhasServlet", urlPatterns = {"/listar-figurinhas.html", "/criar-usuario.html", "/editar-usuario.html", "/listar-usuario.html"})
+@WebServlet(name = "FigurinhasServlet", urlPatterns = {"/listar-figurinhas.html", "/criar-usuario.html", "/editar-usuario.html", "/listar-usuarios.html"})
 public class FigurinhasServlet extends HttpServlet {
 
     /**
@@ -69,7 +69,7 @@ public class FigurinhasServlet extends HttpServlet {
         } else if ("/editar-usuario.html".equals(request.getServletPath())) {
             editarUsuario(request, response);
             return;
-        } else if ("/listar-usuario.html".equals(request.getServletPath())) {
+        } else if ("/listar-usuarios.html".equals(request.getServletPath())) {
             listarUsuario(request, response);
             return;
         }
@@ -102,9 +102,11 @@ public class FigurinhasServlet extends HttpServlet {
     
     
     private void listarFigurinhas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Figurinha> figurinhas = ListaDeUsuarios.getInstanceFigurinhas();
         List<Usuario> usuarios = ListaDeUsuarios.getInstance();
         request.setAttribute("usuarios", usuarios);
-        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/listar-usuarios.jsp");
+        request.setAttribute("figurinhas", figurinhas);
+        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/listar-figurinhas.jsp");
         despachante.forward(request, response);
     
     }
@@ -125,7 +127,10 @@ public class FigurinhasServlet extends HttpServlet {
         despachante.forward(request, response);
     }
     private void listarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    
+        List<Usuario> usuarios = ListaDeUsuarios.getInstance();
+        request.setAttribute("usuarios", usuarios);
+        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/listar-usuarios.jsp");
+        despachante.forward(request, response);
     }
 
 }

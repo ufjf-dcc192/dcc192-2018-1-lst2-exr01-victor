@@ -42,9 +42,26 @@ public class ListaDeUsuarios {
         if (Usuarios == null) {
             autoIncrementoUsuario = 4;
             Usuarios = new ArrayList<>();
+            Figurinhas = getInstanceFigurinhas();
+            
             Usuarios.add(new Usuario(1, "nome 1"));
             Usuarios.add(new Usuario(2, "nome 2"));
             Usuarios.add(new Usuario(3, "nome 3"));
+
+            for (Usuario usuario : Usuarios) {
+                for (Integer i=0; i<20; i++) {
+                    Random gerador = new Random();
+                    Figurinha aux = Figurinhas.get(gerador.nextInt(Figurinhas.size()));
+                    usuario.addFigurinhas(aux);
+                }
+            }
+        }
+        return Usuarios;
+    }
+    
+    public static List<Figurinha> getInstanceFigurinhas() {
+        if (Figurinhas == null) {
+            Figurinhas = new ArrayList<>();
             Figurinhas.add(new Figurinha(1, "aaa"));
             Figurinhas.add(new Figurinha(2, "bbb"));
             Figurinhas.add(new Figurinha(3, "ccc"));
@@ -57,15 +74,8 @@ public class ListaDeUsuarios {
             Figurinhas.add(new Figurinha(10, "jjj"));
             Figurinhas.add(new Figurinha(11, "kkk"));
             Figurinhas.add(new Figurinha(12, "lll"));
-
-            for (Usuario usuario : Usuarios) {
-                for (Integer i=0; i<20; i++) {
-                    Random gerador = new Random();
-                    Figurinha aux = Figurinhas.get(gerador.nextInt(Figurinhas.size()));
-                    usuario.addFigurinhas(aux);
-                }
-            }
         }
-        return Usuarios;
+        
+        return Figurinhas;
     }
 }
